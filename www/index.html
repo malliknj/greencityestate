@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *"
+    />
+    <title>Green City Estates.Open,</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css.map" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js.map"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+  </head>
+
+  <body>
+    <div class="bs-component">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">
+          <img src="/img/GreenCityImg150BY50.png" alt="" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarColor01"
+          aria-controls="navbarColor01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"
+                >Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input
+              class="form-control mr-sm-2"
+              type="text"
+              placeholder="Search"
+            />
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </nav>
+    </div>
+    <div style="text-align: center">
+      <button type="button" class="btn btn-primary">Vehicle Number</button>
+      <br />
+    </div>
+    <div style="text-align: center">
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter Vehicle Number"
+      />
+    </div>
+    <div style="text-align: center">
+      <button type="button" class="btn btn-primary">Driver Name</button>
+      <br />
+    </div>
+    <div style="text-align: center">
+      <input
+        size="55"
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter Driver Name"
+      />
+    </div>
+
+    <p id="demo"></p>
+
+    <div style="text-align: center">
+      <button
+        onclick="startTour()"
+        type="button"
+        id="buttonDate"
+        class="btn btn-primary btn-lg"
+      >
+        <script>
+          var d = new Date();
+          var today = new Date();
+          var date =
+            today.getDate() +
+            '-' +
+            (today.getMonth() + 1) +
+            '-' +
+            today.getFullYear();
+          var time = today.getHours() + ':' + today.getMinutes();
+          var dateTime = date + ' ' + time;
+          document.getElementById('buttonDate').innerHTML = dateTime;
+        </script>
+      </button>
+    </div>
+    <!--
+    <div style="text-align: center">
+      <button
+        onclick="startTour()"
+        type="button"
+        id="buttonS"
+        class="btn btn-primary btn-lg"
+      >
+        Start Tour
+      </button>
+    </div>
+    
+-->
+    <div align="center">
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+          <input
+            onclick="startTour()"
+            type="radio"
+            name="options"
+            id="option1"
+            autocomplete="off"
+            checked
+          />
+          Site Visit
+        </label>
+        <label class="btn btn-secondary">
+          <input
+            onclick="startTour()"
+            type="radio"
+            name="options"
+            id="option2"
+            autocomplete="off"
+          />
+          START
+        </label>
+        <label class="btn btn-secondary">
+          <input
+            onclick="stopTour()"
+            type="radio"
+            name="options"
+            id="option3"
+            autocomplete="off"
+          />
+          STOP
+        </label>
+      </div>
+    </div>
+    <script>
+      function startTour() {
+        // document.getElementById("buttonS").hidden
+        document.getElementById('buttonDate').innerText =
+          'GPS Recodrding Started';
+      }
+    </script>
+    <script>
+      function stopTour() {
+        var d = new Date();
+        var today = new Date();
+        var date =
+          today.getDate() +
+          '-' +
+          (today.getMonth() + 1) +
+          '-' +
+          today.getFullYear();
+        var time = today.getHours() + ':' + today.getMinutes();
+        var dateTime = date + ' ' + time;
+        document.getElementById('buttonDate').innerHTML =
+          'GPS Recording Stopped';
+      }
+    </script>
+    <!-- <button id="setLocalStorage">SET LOCAL STORAGE</button>
+    <button id="showLocalStorage">SHOW LOCAL STORAGE</button>
+    <button id="removeProjectFromLocalStorage">REMOVE PROJECT</button>
+    <button id="getLocalStorageByKey">GET BY KEY</button> -->
+  </body>
+</html>

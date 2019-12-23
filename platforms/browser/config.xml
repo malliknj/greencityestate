@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.phonegap.net" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <feature name="Camera">
+        <param name="browser-package" value="Camera" />
+    </feature>
+    <feature name="Device">
+        <param name="browser-package" value="Device" />
+    </feature>
+    <name>NewCityEstate</name>
+    <description>
+       NewCityEstate
+    </description>
+    <author email="mallik@njsys.net" href="http://mallik@njsys.net">
+        NjSys Team
+    </author>
+    <content src="index.html" />
+    <icon src="NJSysLogoMobile.png" />
+    <preference name="android-minSdkVersion" value="14" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="orientation" value="portrait" />
+    <preference name="android-build-tool" value="gradle" />
+    <preference name="phonegap-version" value="cli-8.0.0" />
+</widget>
