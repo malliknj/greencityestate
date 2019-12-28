@@ -23,6 +23,46 @@
     <script type="text/javascript" src="js/bootstrap.min.js.map"></script>
 
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        // navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        document.getElementById("watchPosition").addEventListener("click", watchPosition);	
+    }
+
+    // onSuccess Geolocation
+    //
+    function watchPosition() {
+   var options = {
+      maximumAge: 3600000,
+      timeout: 3000,
+      enableHighAccuracy: true,
+   }
+   var watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+
+   function onSuccess(position) {
+      alert('Latitude: '          + position.coords.latitude          + '\n' +
+         'Longitude: '         + position.coords.longitude         + '\n' +
+         'Altitude: '          + position.coords.altitude          + '\n' +
+         'Accuracy: '          + position.coords.accuracy          + '\n' +
+         'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+         'Heading: '           + position.coords.heading           + '\n' +
+         'Speed: '             + position.coords.speed             + '\n' +
+         'Timestamp: '         + position.timestamp                + '\n');
+   };
+
+   function onError(error) {
+      alert('code: '    + error.code    + '\n' +'message: ' + error.message + '\n');
+   }
+  }
+   
+    </script>
   </head>
 
   <body>
@@ -200,7 +240,9 @@
         document.getElementById('buttonDate').innerHTML =
           'GPS Recording Stopped';
       }
+      
     </script>
+    <button id = "watchPosition">WATCH POSITION</button>
     <!-- <button id="setLocalStorage">SET LOCAL STORAGE</button>
     <button id="showLocalStorage">SHOW LOCAL STORAGE</button>
     <button id="removeProjectFromLocalStorage">REMOVE PROJECT</button>
