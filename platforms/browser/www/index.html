@@ -36,24 +36,9 @@
         document
           .getElementById('watchPosition')
           .addEventListener('click', watchPosition);
-        $.ajax({
-          type: 'POST',
-          url: 'http://l27.0.0.1:3000/php/insert.php',
-          data: { firstname: firstname, lastname: lastname },
-          crossDomain: true,
-          cache: false,
-          beforeSend: function() {
-            $('#insert').val('Connecting...');
-          },
-          success: function(data) {
-            if (data == 'success') {
-              alert('inserted');
-              $('#insert').val('submit');
-            } else if (data == 'error') {
-              alert('error');
-            }
-          }
-        });
+        document
+          .getElementById('options')
+          .addEventListener('click', checklogin);
       }
 
       // onSuccess Geolocation
