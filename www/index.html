@@ -9,10 +9,11 @@
       name="viewport"
       content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"
     />
+    
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *"
-    />
+    /> 
     <title>Green City Estates.Open,</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css.map" /> -->
@@ -33,9 +34,9 @@
       //
       function onDeviceReady() {
         // navigator.geolocation.getCurrentPosition(onSuccess, onError);
-      //  document
-//.getElementById('watchPosition')
-   //       .addEventListener('click', watchPosition);
+        //  document
+        //.getElementById('watchPosition')
+        //       .addEventListener('click', watchPosition);
         document
           .getElementById('option3')
           .addEventListener('click', checklogin);
@@ -94,7 +95,7 @@
       function checklogin() {
         var firstname = $('#username').val();
         var lastname = $('#password').val();
-
+alert("hi njsys");
         $.ajax({
           type: 'POST',
           url: 'http://njsys.net/authlogin.php',

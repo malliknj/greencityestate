@@ -15,6 +15,21 @@
     </author>
     <content src="index.html" />
     <icon src="NJSysLogoMobile.png" />
+    <allow-intent href="http://njsys.net" />
+    <allow-intent href="https://fonts.googleapis.com" />
+    <access origin="http://google.com" />
+    <access origin="https://google.com" />
+    <access origin="http://maps.google.com" />
+    <access origin="http://*.google.com" />
+    <access origin="content:///*" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="http://njsys.net/*" />
+    <allow-intent href="*://*.njsys.net/*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="geo:*" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="orientation" value="portrait" />
