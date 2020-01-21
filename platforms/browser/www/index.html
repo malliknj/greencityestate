@@ -15,14 +15,120 @@
     />
     <title>Green City Estates.Open,</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css.map" />
+    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css.map" /> -->
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script> 
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js.map"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js.map"></script> 
 
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/index.js"></script> -->
+    <script type="text/javascript" charset="utf-8">
+      // Wait for device API libraries to load
+      //
+      document.addEventListener('deviceready', onDeviceReady, false);
+
+      // device APIs are available
+      //
+      function onDeviceReady() {
+        // navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        document
+          .getElementById('watchPosition')
+          .addEventListener('click', watchPosition);
+        $.ajax({
+          type: 'POST',
+          url: 'http://l27.0.0.1:3000/php/insert.php',
+          data: { firstname: firstname, lastname: lastname },
+          crossDomain: true,
+          cache: false,
+          beforeSend: function() {
+            $('#insert').val('Connecting...');
+          },
+          success: function(data) {
+            if (data == 'success') {
+              alert('inserted');
+              $('#insert').val('submit');
+            } else if (data == 'error') {
+              alert('error');
+            }
+          }
+        });
+      }
+
+      // onSuccess Geolocation
+      //
+      function watchPosition() {
+        var options = {
+          maximumAge: 3600000,
+          timeout: 3000,
+          enableHighAccuracy: true
+        };
+        var watchID = navigator.geolocation.watchPosition(
+          onSuccess,
+          onError,
+          options
+        );
+
+        function onSuccess(position) {
+          alert(
+            'Latitude: ' +
+              position.coords.latitude +
+              '\n' +
+              'Longitude: ' +
+              position.coords.longitude +
+              '\n' +
+              'Altitude: ' +
+              position.coords.altitude +
+              '\n' +
+              'Accuracy: ' +
+              position.coords.accuracy +
+              '\n' +
+              'Altitude Accuracy: ' +
+              position.coords.altitudeAccuracy +
+              '\n' +
+              'Heading: ' +
+              position.coords.heading +
+              '\n' +
+              'Speed: ' +
+              position.coords.speed +
+              '\n' +
+              'Timestamp: ' +
+              position.timestamp +
+              '\n'
+          );
+        }
+
+        function onError(error) {
+          alert(
+            'code: ' + error.code + '\n' + 'message: ' + error.message + '\n'
+          );
+        }
+      }
+
+      function checklogin() {
+        var firstname = $('#username').val();
+        var lastname = $('#password').val();
+
+        $.ajax({
+          type: 'POST',
+          url: 'http://njsys.net/authlogin.php',
+          data: { firstname: firstname, lastname: lastname },
+          crossDomain: true,
+          cache: false,
+          beforeSend: function() {
+            $('#insert').val('Connecting...');
+          },
+          success: function(data) {
+            if (data == 'promoter') {
+              window.location = 'promoter.html';
+            } else if (data == 'cabservice') {
+              window.location = 'cabservice.html';
+            }
+          }
+        });
+      }
+    </script>
   </head>
 
   <body>
@@ -74,137 +180,44 @@
       </nav>
     </div>
     <div class="container text-center">
-      <h1>Green City Estates(P) Ltd</h1>
-          <p class = "lead">Welcome to OUr Real Estate Business Venture</p>
-
-    </div>
-    <div style="text-align: center">
-      <button type="button" class="btn btn-primary">Vehicle Number</button>
-      <br />
-    </div>
-    <div style="text-align: center">
-      <input
-        type="email"
-        class="form-control"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-        placeholder="Enter Vehicle Number"
-      />
-    </div>
-    <div style="text-align: center">
-      <button type="button" class="btn btn-primary">Driver Name</button>
-      <br />
-    </div>
-    <div style="text-align: center">
-      <input
-        size="55"
-        type="email"
-        class="form-control"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-        placeholder="Enter Driver Name"
-      />
+      <h1>Green City Estates</h1>
+      <p class="lead">Welcome to OUr Real Estate Business Venture</p>
     </div>
 
-    <p id="demo"></p>
-
-    <div style="text-align: center">
-      <button
-        onclick="startTour()"
-        type="button"
-        id="buttonDate"
-        class="btn btn-primary btn-lg"
-      >
-        <script>
-          var d = new Date();
-          var today = new Date();
-          var date =
-            today.getDate() +
-            '-' +
-            (today.getMonth() + 1) +
-            '-' +
-            today.getFullYear();
-          var time = today.getHours() + ':' + today.getMinutes();
-          var dateTime = date + ' ' + time;
-          document.getElementById('buttonDate').innerHTML = dateTime;
-        </script>
-      </button>
-    </div>
-    <!--
-    <div style="text-align: center">
-      <button
-        onclick="startTour()"
-        type="button"
-        id="buttonS"
-        class="btn btn-primary btn-lg"
-      >
-        Start Tour
-      </button>
-    </div>
-    
--->
     <div align="center">
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-secondary active">
-          <input
-            onclick="startTour()"
-            type="radio"
-            name="options"
-            id="option1"
-            autocomplete="off"
-            checked
-          />
-          Site Visit
-        </label>
-        <label class="btn btn-secondary">
-          <input
-            onclick="startTour()"
-            type="radio"
-            name="options"
-            id="option2"
-            autocomplete="off"
-          />
-          START
-        </label>
-        <label class="btn btn-secondary">
-          <input
-            onclick="stopTour()"
-            type="radio"
-            name="options"
-            id="option3"
-            autocomplete="off"
-          />
-          STOP
-        </label>
+      <div data-role="page" id="page1" text-align:center>
+        <div data-role="content">
+          <!-- <form id="loginForm"> -->
+          <div data-role="fieldcontain" class="ui-hide-label">
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              value=""
+              aria-describedby="emailHelp"
+              placeholder="Enter username"
+              name="username"
+            />
+          </div>
+
+          <div data-role="fieldcontain" class="ui-hide-label">
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              id="password"
+              value=""
+              placeholder="Password"
+            />
+          </div>
+          <label class="btn btn-secondary" onclick="checklogin()" id="option3"
+            >Login</label
+          >
+        </div>
       </div>
     </div>
-    <script>
-      function startTour() {
-        // document.getElementById("buttonS").hidden
-        document.getElementById('buttonDate').innerText =
-          'GPS Recodrding Started';
-      }
-    </script>
-    <script>
-      function stopTour() {
-        var d = new Date();
-        var today = new Date();
-        var date =
-          today.getDate() +
-          '-' +
-          (today.getMonth() + 1) +
-          '-' +
-          today.getFullYear();
-        var time = today.getHours() + ':' + today.getMinutes();
-        var dateTime = date + ' ' + time;
-        document.getElementById('buttonDate').innerHTML =
-          'GPS Recording Stopped';
-      }
-    </script>
-    <!-- <button id="setLocalStorage">SET LOCAL STORAGE</button>
-    <button id="showLocalStorage">SHOW LOCAL STORAGE</button>
-    <button id="removeProjectFromLocalStorage">REMOVE PROJECT</button>
-    <button id="getLocalStorageByKey">GET BY KEY</button> -->
+    <button id="watchPosition">WATCH POSITION</button>
+
     <footer>
       <p class="text-center">Copyright &copy: 2020, Greencity Estates</p>
     </footer>

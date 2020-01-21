@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"
+    />
+    
+    <title>Green City Estates.Open,</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <!--  <link rel="stylesheet" type="text/css" href="css/fontawesome.min.css" />
+    <link type="text/css" href="css/fontawesome.css" rel="stylesheet" />
+    <link type="text/css" href="css/brands.css" rel="stylesheet" />
+    <link type="text/css" href="css/solid.css" rel="stylesheet" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+  
+    
+    <script type=”text/javascript”>
+      
+      $(document).ready(function(){
+          $(“#sub”).click(function(){
+            alert("hello");
+          var firstname = $(“#firstname”).val();
+          var lastname = $(“#lastname”).val();
+          console.log('Received Event: ' +firstname + lastname);
+          
+          if($.trim(firstname).length >0 & $.trim(lastname).length >0) {
+              $.ajax({
+                  type:”POST”,  //Request type
+                  url: “http://njsys.net/firstname.php”,   
+                  data:{firstname:firstname, lastname:lastname},
+                  cache:false,
+                  success:function(data) {
+                      alert(data);
+                  }
+              })
+          } 
+          else {
+              alert(‘Input fields are empty’);
+          }
+      })
+  })
+  </script>
+</script>
+  </head>
+
+  <body>
+    <input type=”text” placeholder=”write your first name” id=”firstname”>
+    <input type=”text” placeholder=”write your last name” id=”lastname”>
+    <button id=”sub”>Submit result</button>
+    <footer>
+      <p class="text-center">Copyright &copy: 2020, Greencity Estates</p>
+    </footer>
+  </body>
+</html>

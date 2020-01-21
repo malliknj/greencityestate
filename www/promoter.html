@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *"
+    />
+    <title>Green City Estates.Open,</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css.map" /> -->
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script> 
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js.map"></script> 
+
+    <script type="text/javascript" src="js/index.js"></script> -->
+    <script type="text/javascript" charset="utf-8">
+ function uploadpromoter() {
+              
+              var proname = $('#pusername').val();
+              var prophone = $('#puserphone').val();
+              var prolocation = $('#puserlocation').val();
+              var prostart = $('#pstart').val();
+              var protime = $('#pusertime').val();
+              var prosite = $('#psite').val();
+              var firstname = $('#username').val();
+              var lastname = $('#password').val();
+             //alert(proname);
+              $.ajax({
+                type: 'POST',
+                url: 'http://njsys.net/promoter.php',
+               
+                data: { proname: proname, prophone: prophone, prolocation: prolocation, prostart: prostart, protime: protime, prosite: prosite },
+                crossDomain: true,
+                cache: false,
+                beforeSend: function() {
+                  $('#insert').val('Connecting...');
+                },
+                success: function(data) {
+                   //alert(data);
+                  if (data == 'success') {
+                    alert(
+                  'Promoter Name: ' +
+                    proname +
+                    '\n' +
+                    'Promoter Mobile: ' +
+                   prophone +
+                    '\n' +
+                    'Pick Up Location: ' +
+                    prolocation +
+                    '\n' +
+                    'Request Date: ' +
+                    prostart +
+                    '\n' +
+                    'Pickup Time: ' +
+                    protime +
+                    '\n' +
+                    'Visting Site: ' +
+                    prosite +
+                    '\n'
+                );
+                  } else if (data == 'cabservice') {
+                    $.mobile.changePage($('#page3'));
+                  }
+                }
+                
+              });
+            }
+    </script>
+</head>
+<body>
+<div class="container text-center">
+        
+            <img
+              src="img/GreenCityImg150BY50.png"
+              
+              alt=""
+              align="center"
+            />
+          </a>
+          <h3>Green City Estates</h3>
+          <p class="lead">Welcome to OUr Real Estate Promoter Portal</p>
+
+
+<!-- <form id="loginForm"> -->
+                <div data-role="fieldcontain" class="ui-hide-label">
+                      <input
+                          type="text"
+                          class="form-control"
+                          id="pusername"
+                          value=""
+                           aria-describedby="emailHelp"
+                           placeholder="Enter username"
+                          name="username"
+                      />
+                </div>
+
+                <div data-role="fieldcontain" class="ui-hide-label">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="puserphone"
+                  value=""
+                  aria-describedby="emailHelp"
+                  placeholder="Enter Your Mobile Number"
+                  name="userphone"
+                />
+                </div>
+                <div data-role="fieldcontain" class="ui-hide-label">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="puserlocation"
+                  value=""
+                  aria-describedby="emailHelp"
+                  placeholder="Enter your pickup location"
+                  name="userlocation"
+                />
+                </div>
+                  <div>
+                  <label for="start" class="form-control">Start date:</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="pstart"
+                    name="trip-start"
+                    value="2020-01-01"
+                    min="2020-01-01"
+                    max="2021-01-31"
+                  />
+                  </div>
+                  <div data-role="fieldcontain" class="ui-hide-label">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="pusertime"
+                    value=""
+                    aria-describedby="emailHelp"
+                    placeholder="Enter pick up time AM/PM"
+                    name="usertime"
+                  />
+                  </div>
+                <div class="form-group">
+                <select class="form-control" id="psite">
+                  <option>Aerospace-County-Annexe</option>
+                  <option>Dukes_Aerospace_County-phase2</option>
+                  <option>Dukes_Aerospace_County-phase3</option>
+                  <option>dukes-county-phase-2</option>
+                  <option>Green_City_Dukes_Aerospace_County1</option>
+                  <option>Green_City_Gachibowli_County_8</option>
+                  <option>green-city-dukes-county</option>
+                </select>
+                </div>
+
+                <div data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <button data-role="button" data-theme="b" onclick="uploadpromoter()">
+                  Site Visit Request
+                </button>
+                <button data-role="button" data-theme="e" onclick="getapproval()">
+                  Approved Site Visits
+                </button>
+                </div>
+</div>
+<footer>
+  <p class="text-center">Copyright &copy: 2020, Greencity Estates</p>
+</footer>
+</body>
+</html>

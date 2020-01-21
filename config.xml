@@ -51,7 +51,7 @@
         <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-GreenCityImg.jpg" />
     </platform>
 <platform name="android">
-        <preference name="android-minSdkVersion" value="16" />
+        <preference name="android-minSdkVersion" value="19" />
         <allow-intent href="market:*" />
     </platform>
     
