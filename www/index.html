@@ -95,7 +95,7 @@
       function checklogin() {
         var firstname = $('#username').val();
         var lastname = $('#password').val();
-alert("hi njsys");
+//alert("hi njsys");
         $.ajax({
           type: 'POST',
           url: 'http://njsys.net/authlogin.php',
@@ -110,6 +110,8 @@ alert("hi njsys");
               window.location = 'promoter.html';
             } else if (data == 'cabservice') {
               window.location = 'cabservice.html';
+            } else if (data == 'admin') {
+              window.location = 'admin.html';
             }
           }
         });
@@ -165,13 +167,14 @@ alert("hi njsys");
         </div>
       </nav>
     </div>
-    <div class="container text-center">
-      <h1>Green City Estates</h1>
-      <p class="lead">Welcome to OUr Real Estate Business Venture</p>
+    <div data-role="page" id="page1" text-align:center></div>
+    <div class="container text-center"></div>
+      <h1 text-align:center>Green City Estates</h1 text-align:center>
+      <p class="lead" text-align:center>Welcome to OUr Real Estate Business Venture</p>
     </div>
 
-    <div align="center">
-      <div data-role="page" id="page1" text-align:center>
+    
+      
         <div data-role="content">
           <!-- <form id="loginForm"> -->
           <div data-role="fieldcontain" class="ui-hide-label">
@@ -200,12 +203,13 @@ alert("hi njsys");
             >Login</label
           >
         </div>
-      </div>
-    </div>
-    <button id="watchPosition">WATCH POSITION</button>
+     
+   
+   <!-- <button id="watchPosition">WATCH POSITION</button> -->
 
     <footer>
       <p class="text-center">Copyright &copy: 2020, Greencity Estates</p>
     </footer>
+  </div>
   </body>
 </html>
