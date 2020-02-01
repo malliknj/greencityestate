@@ -37,7 +37,119 @@
   var Longitude = undefined;
   var myVar= undefined;
   // Get geo coordinates
+  document.addEventListener('deviceready', onDeviceReady, false);
+
+// device APIs are available
+//
+function onDeviceReady() {
+  // navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    document.getElementById('option3').addEventListener('click', watchPosition);
+}
+
+// onSuccess Geolocation
+//
+function watchPosition() {
+  var options = {
+    maximumAge: 3600000,
+    timeout: 3000,
+    enableHighAccuracy: true
+  };
+  var mapOptions = {
+                              center: new google.maps.LatLng(0, 0),
+                              zoom: 1,
+                              mapTypeId: google.maps.MapTypeId.ROADMAP
+                          };
   
+         map = new google.maps.Map
+        (document.getElementById("map"), mapOptions);
+        var options = {
+                      maximumAge: 30000,
+                      timeout: 30000,
+                      enableHighAccuracy: true
+                      };
+  var watchID = navigator.geolocation.watchPosition(
+    onSuccess,
+    onError,
+    options
+  );
+
+  function onSuccess(position) {
+     
+   
+//alert("hi");
+         
+             // alert("hi2");
+             Latitude = position.coords.latitude;
+             Longitude = position.coords.longitude;
+             myVar = setInterval(myTimer, 300 * 1000);
+        function myTimer() {
+             var vehnum= $('#vehiclenumber').val();
+             var driname = $('#drivername').val();
+            var driphone = $('#driverphone').val();
+            var driotp = $('#otpnumber').val();
+            var dlatitude=  position.coords.latitude;
+            var dlongitude = position.coords.longitude;
+            let current_datetime = new Date()
+            let formatted_date =current_datetime.getFullYear() +"-"+(current_datetime.getMonth() + 1) + "-"+current_datetime.getDate()
+            console.log(formatted_date)
+            var dstarttime=  formatted_date;
+        
+                    $.ajax({
+                    type: 'POST',
+                    url: 'http://njsys.net/geodata.php',
+                    data: { vehnum: vehnum, driname: driname,driphone: driphone, driotp: driotp,dlatitude:dlatitude,dlongitude:dlongitude,dstarttime:dstarttime},
+                    crossDomain: true,
+                    cache: false,
+                    beforeSend: function() {
+                      //alert(vehnum+''+ driname+''+ driotp+''+ driphone+''+ dlatitude+''+ dlongitude);
+                    },
+                    success: function(data) {
+                    // alert(data);
+                  
+                    }
+                  });
+        }
+                  getMap(Latitude, Longitude);
+  
+
+  }
+
+  function onError(error) {
+    alert(
+      'code: ' + error.code + '\n' + 'message: ' + error.message + '\n'
+    );
+  }
+
+  function getMap(latitude, longitude) {
+
+            var latLong = new google.maps.LatLng(latitude, longitude);
+            var marker = new google.maps.Marker({
+                              position: latLong,
+                              path: google.maps.SymbolPath.CIRCLE,
+                              fillColor: '#00CCBB',
+                              fillOpacity: 1,
+                              strokeColor: '',
+                              strokeWeight: 0
+                                        });
+           
+            marker.setMap(map);
+            map.setZoom(15);
+            map.setCenter(marker.getPosition());
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
   function getMapLocation() {
 
           var mapOptions = {
@@ -54,11 +166,11 @@
                       enableHighAccuracy: true
                       };
 //alert("hi");
-         myVar = setInterval(myTimer ,60 * 1000);
+         myVar = setInterval(myTimer ,30 * 1000);
         function myTimer() {
   
                             var watchID =navigator.geolocation.getCurrentPosition
-                          (onMapSuccess, onMapError, { enableHighAccuracy: true });
+                          (onMapSuccess, onMapError, options,{ enableHighAccuracy: true });
                           }
 
         var onMapSuccess = function (position) {
@@ -188,7 +300,7 @@
    
     <label class="btn btn-secondary">
       <input
-        onclick='getMapLocation() '
+     
         type="radio"
         name="options"
         id="option3"
